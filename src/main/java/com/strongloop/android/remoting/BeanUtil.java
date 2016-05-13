@@ -199,6 +199,7 @@ public class BeanUtil {
         }
     }
 
+	
     private static Object convertObject(Object object, boolean includeSuperClasses) {
         if (isSimpleObject(object)) {
             return object;
