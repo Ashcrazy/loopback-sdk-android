@@ -184,62 +184,7 @@ afterEvaluate { project ->
         archives dist
     }
 
-    // Maven publishing
-
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                if (shouldPublishToMavenCentral) {
-                    beforeDeployment { MavenDeployment deployment ->
-                        signing.signPom(deployment)
-                    }
-
-                    repository(url: sonatypeRepositoryUrl) {
-                        authentication(
-                            userName: sonatypeUserName,
-                            password: sonatypePassword);
-                    }
-
-                }
-
-                pom.project {
-                    name 'loopback-sdk-android'
-                    description 'Android client for LoopBack'
-                    url 'https://github.com/strongloop/loopback-sdk-android'
-
-                    licenses {
-                        license {
-                            name 'The MIT License'
-                            url 'http://opensource.org/licenses/mit-license.php'
-                            distribution 'repo'
-                        }
-                    }
-
-                    scm {
-                        connection 'scm:git@github.com:strongloop/loopback-sdk-android.git'
-                        developerConnection 'scm:git@github.com:strongloop/loopback-sdk-android.git'
-                        url 'https://github.com/strongloop/loopback-sdk-android'
-                    }
-
-                    developers {
-                        developer {
-                            id 'bajtos'
-                            name 'Miroslav Bajtos'
-                            email 'miroslav@strongloop.com'
-                            organization = 'StrongLoop, Inc.'
-                            organizationUrl 'http://strongloop.com/'
-                        }
-                    }
-                }
-
-                pom.withXml {
-                    def root = asNode()
-                    root.appendNode('packaging', 'jar');
-                }
-            }
-        }
-    }
-
+    
     // Task for Jenkins build that will conditionally
     // call uploadArchives, but only if there is something
     // to upload
