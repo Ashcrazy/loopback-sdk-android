@@ -177,7 +177,7 @@ public class BeanUtil {
                 return false;
             }
         }
-        else {
+        else {							//here is the magic
             return value == null || value instanceof Map || parameterType.isAssignableFrom(value.getClass());
         }
     }
