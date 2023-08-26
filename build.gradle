@@ -215,3 +215,12 @@ afterEvaluate { project ->
     }
     compileReleaseJavaWithJavac.dependsOn printCompilerInput
 }
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+  }
+	dependencies {
+		implementation 'com.github.farruxx:loopback-sdk-android:v1.6.3'
+  }
