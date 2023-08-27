@@ -202,16 +202,5 @@ afterEvaluate { project ->
         }
     }
 
-    // debugging
-    task printCompilerInput << {
-      logger.info "**JAVAC INPUT FILES**"
-      compileReleaseJavaWithJavac.source.each {
-        logger.info '  ' + it.absolutePath
-      }
-      logger.info "**JAVAC CLASSPATH**"
-      compileReleaseJavaWithJavac.classpath.each {
-        logger.info '  ' + it.absolutePath
-      }
-    }
-    compileReleaseJavaWithJavac.dependsOn printCompilerInput
+    
 }
